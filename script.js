@@ -36,6 +36,7 @@ function moveMain() {
     }
 }
 mayn.addEventListener('click', moveMain)
+
 function moveSecs() {
     const newScript = document.createElement('script')
     newScript.src = 'section.js'
