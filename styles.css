@@ -39,6 +39,20 @@ h1 {
     position: relative;
     align-items: end;
 }*/
+.jj {
+    display: unset;
+}
+.ltext {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.latest {
+    display: flex;
+    font-size: 1.25em;
+    font-family: "Arial Narrow";
+    justify-content: flex-start
+}
 .nav2 {
     background-color: #bed100;
     font-family: "Arial";
@@ -63,6 +77,11 @@ a {
 .yolo {
     background-color: #E5FB00;
     border: 4px solid black;
+    width: 95%;
+    margin-left: auto ;
+    margin-right: auto ;
+    margin-bottom: 5px ;
+    margin-top: 5px ;
 }
 @keyframes bloop {
     0% {
@@ -91,10 +110,26 @@ a {
  .yy {
      border: black 1px solid;
  }
+ #content {
+     border: #E5FB00 6px solid;
+     background-color: #c2d500;
+     outline: black 6px solid;
+     width: 40%;
+     margin-left: auto;
+     margin-right: auto;
+     margin-top: 10px;
+ }
  #round {
      border-radius: 50%;
      border: 3px solid green; /* Параметры рамки */
      box-shadow: 0 0 7px #666; /* Параметры тени */
+ }
+ #p2 {
+     text-align: center;
+     color: #E5FB00;
+     font-family: "Arial Black";
+     font-size: 2em;
+     text-shadow: 0 0 0 black;
  }
  .material-symbols-outlined {
      font-variation-settings:

@@ -22,43 +22,21 @@ async function getarticles(response) {
         //console.log("Подключение установлено");
         const db = client.db("login");
         const collection = db.collection("postdata");
-       // await collection.drop()
+        const grando = await collection.find().toArray()
+        let o = 0
+        for (let post of grando) {
+            post.id = o
+            postheading = {heading: post.heading}
+            o++
+            const result = await collection.findOneAndUpdate(postheading, { $set: {id: post.id}});
+        }
         const resulttech = await collection.find({section: "tech"}).toArray()
-        let o1 = 0
-        for(let tech1 of resulttech) {
-            tech1.id = o1
-            o1++
-        }
         const resultpolitics = await collection.find({section: "politics"}).toArray()
-        let o2 = 0
-        for(let politics1 of resultpolitics) {
-            politics1.id = o2
-            o2++
-        }
         const resultsports = await collection.find({section: "sports"}).toArray()
-        let o3 = 0
-        for(let sports1 of resultsports) {
-            sports1.id = o3
-            o3++
-        }
         const resultart = await collection.find({section: "art"}).toArray()
-        let o4 = 0
-        for(let art1 of resultart) {
-            art1.id = o4
-            o4++
-        }
         const resultnature = await collection.find({section: "nature"}).toArray()
-        let o5 = 0
-        for(let nature1 of resultnature) {
-            nature1.id = o5
-            o5++
-        }
         const resultother = await collection.find({section: "other"}).toArray()
-        let o6 = 0
-        for(let other1 of resultother) {
-            other1.id = o6
-            o6++
-        }
+        console.log(grando)
        // const categories = new Map();
         response.send({'tech': Array.from(resulttech), 'politics': Array.from(resultpolitics), 'sports': Array.from(resultsports), 'art': Array.from(resultart), 'nature': Array.from(resultnature), 'other': Array.from(resultother)})
     }catch(err) {
@@ -120,9 +98,20 @@ async function run2(informa) {
         console.log("Подключение установлено");
         const db = client.db("login");
         const collection = db.collection("postdata");
-        const result = await collection.insertOne(informa);
         const result2 = await collection.findOne(informa)
-        console.log(result)
+        const logline = {heading: informa.heading}
+        testbool = false //ДЕБАГ
+        if (result2 && testbool !== true) { //ДЕБАГ
+            let ggs = await db.collection('postdata').deleteMany(logline);
+            console.log(ggs)
+            const result = await collection.insertOne(informa);
+            console.log(result)
+        } else if (testbool) { //ДЕБАГ
+            let ggs = await db.collection('logindata').deleteMany(logline); //ДЕБАГ
+            console.log(ggs)  //ДЕБАГ
+        } else {
+            const result = await collection.insertOne(informa);
+            console.log(result)}
         console.log(result2)
     }catch(err) {
         console.log(err);
